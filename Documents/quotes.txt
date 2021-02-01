@@ -390,3 +390,4 @@ The proper use of comments is to compensate for our failure to express ourself i
 Incorrect documentation is often worse than no documentation.   — Bertrand Meyer
 Security is a state of mind.   — NSA Security Manua
 And don’t EVER make the mistake that you can design something better than what you get from ruthless massively parallel trial-and-error with a feedback cycle. That’s giving your intelligence much too much credit    — Linus
+"There are only two hard things in Computer Science: cache invalidation and naming things." — Phil Karlton
