@@ -10,6 +10,7 @@ stty stop undef		# Disable ctrl-s to freeze terminal.
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
+export PYTHONPATH=/usr/lib/python3.9/site-packages/
 
 # Load aliases and shortcuts if existent.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc"
