@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# writes out the abstract section to a seperate file
+# vim runs this whenever I exit a .tex file
+
+sed -n -e "/documentclass/, /end{titlepage}/p" $1 > ABSTRACT.tex
+echo "\\end{document}" >> ABSTRACT.tex
+compiler ABSTRACT.tex &

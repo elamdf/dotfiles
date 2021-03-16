@@ -8,6 +8,7 @@ if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autolo
 endif
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 Plug 'vim-scripts/taglist.vim'
+Plug 'xuhdev/vim-latex-live-preview'
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
@@ -19,16 +20,35 @@ Plug 'ap/vim-css-color'
 Plug 'gruvbox-community/gruvbox'
 Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
+Plug 'reedes/vim-pencil'
+Plug 'takac/vim-hardtime'
 call plug#end()
 colorscheme gruvbox
 let mapleader = " "
-noremap z :TlistToggle<CR>
+" 1337 bindings lmao
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 set bg=dark
 " map <leader>b :bp<CR>
+noremap <leader>z :TlistToggle<CR>
+" TeX preview engine
+let g:livepreview_previewer = 'zathura'
+
+" vim pencil for md and tex
+let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType tex         call pencil#init()
+augroup END
+
+" tab switching
+noremap <tab> :tabn<CR>
+
+" let g:hardtime_default_on = 1
+
 set go=a
 set mouse=a
 set nohlsearch
@@ -48,12 +68,13 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 	set number relativenumber
 " fzf, baby
 map <leader>f :Files<CR>
-map <leader>b :Buffers<CR>
+map <leader>x :Buffers<CR>
+
 " Disables automatic commenting on newline:
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Goyo plugin makes text more readable when writing prose:
-	map <leader>g :Goyo \| set bg=light \| set linebreak<CR>
+	map <leader>g :Goyo \| set linebreak<CR>
 
 "spellcheck
 	 map <leader>s :setlocal spell! spelllang=en_us<CR>
@@ -63,8 +84,8 @@ map <leader>b :Buffers<CR>
 	set splitbelow splitright
 
 " Nerd tree
-	map <leader>t :NERDTreeToggle<CR>
 	" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+	map <leader>t :NERDTreeToggle<CR>
     if has('nvim')
         let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
     else
@@ -81,18 +102,21 @@ map <leader>b :Buffers<CR>
 	" map <leader>b :vsp<space>$BIB<CR>
 	map <leader>r :vsp<space>$REFER<CR>
 
-" Replace all is aliased to S.
-	nnoremap S :%s//g<Left><Left>
-
 " Compile document, be it groff/LaTeX/markdown/etc.
-	map <leader>c :w! \| !compiler <c-r>%<CR>
+	map <leader>c :w! \| :silent !compiler <c-r>%<CR>
+
+" Save file as sudo on files that require root permission
+	cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " Open corresponding .pdf/.html or preview
 	map <leader>p :!opout <c-r>%<CR><CR>
 
 " Runs a script that cleans out tex build files whenever I close out of a .tex
 " file.
+" also writes the asbtract out to ABSTRACT.tex
 	autocmd VimLeave *.tex !texclear %
+
+	autocmd VimLeave *.tex !writeabstract %
 
 " Enable Goyo by default for mutt writing
 	autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
