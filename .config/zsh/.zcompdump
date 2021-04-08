@@ -1,4 +1,4 @@
-#files: 764	version: 5.8
+#files: 770	version: 5.8
 
 _comps=(
 '-' '_precommand'
@@ -129,6 +129,7 @@ _comps=(
 'cabal' '_cabal'
 'cal' '_cal'
 'calendar' '_calendar'
+'cargo' '_cargo'
 'cat' '_cat'
 'catchsegv' '_precommand'
 'cc' '_gcc'
@@ -250,6 +251,9 @@ _comps=(
 'dmesg' '_dmesg'
 'dmidecode' '_dmidecode'
 'doas' '_doas'
+'docker' '_docker'
+'docker-compose' '_docker-compose'
+'dockerd' '_docker'
 'domainname' '_yp'
 'dos2unix' '_dos2unix'
 'drill' '_drill'
@@ -373,6 +377,7 @@ _comps=(
 'gchown' '_chown'
 'gchroot' '_chroot'
 'gcksum' '_cksum'
+'gcloud' '_gcloud'
 'gcmp' '_cmp'
 'gcomm' '_comm'
 'gcore' '_gcore'
@@ -616,6 +621,7 @@ _comps=(
 'jdb' '_java'
 'jobs' '_jobs_builtin'
 'joe' '_joe'
+'john' '_john'
 'join' '_join'
 'jq' '_jq'
 'kdeconnect-cli' '_kdeconnect'
@@ -1596,7 +1602,8 @@ bindkey '^[,' _history-complete-newer
 bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
-autoload -Uz _bluetoothctl _code _code-oss _curl _email-notmuch \
+autoload -Uz _bluetoothctl _cargo _code _code-oss _curl \
+            _docker _docker-compose _email-notmuch _gcloud _john \
             _libinput _loginctl _meson _mkinitcpio _mpv \
             _msfconsole _msfvenom _ninja _notmuch _pacman \
             _pass _pulseaudio _rg _tremc _xwallpaper \

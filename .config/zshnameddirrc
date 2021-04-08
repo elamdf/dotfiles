@@ -1,0 +1,13 @@
+hash -d cac=/home/elamd/.cache
+hash -d cf=/home/elamd/.config
+hash -d D=/home/elamd/Downloads
+hash -d d=/home/elamd/Documents
+hash -d dt=/home/elamd/.local/share
+hash -d h=/home/elamd
+hash -d m=/home/elamd/Music
+hash -d mn=/mnt
+hash -d pp=/home/elamd/Pictures
+hash -d sc=/home/elamd/.local/bin
+hash -d src=/home/elamd/.local/src
+hash -d vv=/home/elamd/Videos
+hash -d lab=/home/elamd/Fejerman

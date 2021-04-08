@@ -1,4 +1,4 @@
-# Luke's config for the Zoomer Shell
+# Elam's config for the Zoomer Shell
 
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
@@ -10,7 +10,14 @@ stty stop undef		# Disable ctrl-s to freeze terminal.
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
-export PYTHONPATH=/usr/lib/python3.9/site-packages/
+export PATH=$PATH:"$HOME/.local/esp/xtensa-esp32-elf/bin"
+export IDF_PATH="$HOME/.local/esp/esp-idf"
+export ESPIDF="$HOME/.local/esp/esp-idf"
+export PORT=/dev/ttyUSB0
+# current project, for 'work' script
+export MINE="/home/elamd/projects/aqic/diyaqi/boards/esp32/firmware"
+export PAPER="/home/elamd/.notes/real/aqi/"
+
 
 # Load aliases and shortcuts if existent.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc"

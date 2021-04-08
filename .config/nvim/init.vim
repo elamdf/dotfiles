@@ -113,10 +113,10 @@ map <leader>x :Buffers<CR>
 
 " Runs a script that cleans out tex build files whenever I close out of a .tex
 " file.
-" also writes the asbtract out to ABSTRACT.tex
-	autocmd VimLeave *.tex !texclear %
+" also and cleans out the build files of ABSTRACT.*
 
-	autocmd VimLeave *.tex !writeabstract %
+	autocmd VimLeave *.tex !texclear %
+	autocmd VimLeave *.tex !texclear ABSTRACT.tex
 
 " Enable Goyo by default for mutt writing
 	autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
