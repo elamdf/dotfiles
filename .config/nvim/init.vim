@@ -1,5 +1,6 @@
 let mapleader =","
 
+
 if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
 	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/
@@ -8,6 +9,7 @@ if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autolo
 endif
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 Plug 'vim-scripts/taglist.vim'
+
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
@@ -16,16 +18,17 @@ Plug 'vimwiki/vimwiki'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'kovetskiy/sxhkd-vim'
-Plug 'ap/vim-css-color'
+" Plug 'ap/vim-css-color'
 Plug 'gruvbox-community/gruvbox'
 Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
 Plug 'reedes/vim-pencil'
 Plug 'takac/vim-hardtime'
+Plug 'universal-ctags/ctags'
 call plug#end()
-colorscheme gruvbox
+" colorscheme gruvbox
 let mapleader = " "
-" 1337 bindings lmao
+" disable arrow keys
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
@@ -45,9 +48,23 @@ augroup pencil
 augroup END
 
 " tab switching
-noremap <tab> :tabn<CR>
+" noremap <tab> :tabn<CR>
+:nnoremap <tab> :bnext<CR>
+" make gf add to buffer
+:map gf :e <cfile><CR>
+" jump to def in split window
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
-" let g:hardtime_default_on = 1
+
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+
 
 set go=a
 set mouse=a
@@ -63,9 +80,9 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 	nnoremap c "_c
 	set nocompatible
 	filetype plugin on
-	syntax on
+	" syntax on
 	set encoding=utf-8
-	set number relativenumber
+	" set number relativenumber
 " fzf, baby
 map <leader>f :Files<CR>
 map <leader>x :Buffers<CR>
@@ -80,7 +97,7 @@ map <leader>x :Buffers<CR>
 	 map <leader>s :setlocal spell! spelllang=en_us<CR>
 "autonote thing, see scripts
 	autocmd BufWritePost *note-*.md silent !buildNote %:p
-" Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
+" Splits open at the bottom and right, which is non-stupid, unlike vim defaults.
 	set splitbelow splitright
 
 " Nerd tree
