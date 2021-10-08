@@ -149,3 +149,8 @@
 ;      org-gcal-client-secret "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"
 ;      org-gcal-fetch-file-alist '(("c_f3di6iun1mdd429u9uf9h643h4@group.calendar.google.com" .  "~/schedule.org")
 ;                                  ))
+
+;paint time
+(add-to-list 'load-path "~/.emacs.d/")
+(require 'paint.el)
+
