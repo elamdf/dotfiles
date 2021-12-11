@@ -142,9 +142,10 @@ static Key keys[] = {
 	{ MODKEY,			XK_q,		killclient,	{0} },
 	{ MODKEY|ShiftMask,		XK_q,		spawn,		SHCMD("sysact") },
 	{ MODKEY,			XK_w,		spawn,		SHCMD("$BROWSER") },
-	{ MODKEY|ShiftMask,		XK_w,		spawn,		SHCMD(TERMINAL " -e sudo nmtui") },
-	{ MODKEY,			XK_e,		spawn,		SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook") },
-	{ MODKEY|ShiftMask,		XK_e,		spawn,		SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook") },
+	{ MODKEY|ShiftMask,			XK_w,		spawn,		SHCMD("ward") },
+	/* { MODKEY|ShiftMask,		XK_w,		spawn,		SHCMD(TERMINAL " -e sudo nmtui") },*/
+	/* { MODKEY,			XK_e,		spawn,		SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook") },
+	{ MODKEY|ShiftMask,		XK_e,		spawn,		SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook") }, */
 	{ MODKEY,			XK_r,		spawn,		SHCMD(TERMINAL " -e lf") },
 	{ MODKEY|ShiftMask,		XK_r,		spawn,		SHCMD(TERMINAL " -e gotop") },
 	{ MODKEY,			XK_t,		setlayout,	{.v = &layouts[0]} }, /* tile */
@@ -183,13 +184,12 @@ static Key keys[] = {
 	{ MODKEY,			XK_apostrophe,	togglescratch,	{.ui = 1} },
 	/* { MODKEY|ShiftMask,		XK_apostrophe,	spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_Return,	spawn,		{.v = termcmd } },
-	{ MODKEY|ShiftMask,		XK_Return,	togglescratch,	{.ui = 0} },
+	{ MODKEY|ShiftMask,		XK_Return,	spawn,	SHCMD(TERMINAL " -e emacs") },
 
 	{ MODKEY|ShiftMask,			XK_z,		incrgaps,	{.i = +3 } },
 	/* { MODKEY|ShiftMask,		XK_z,		spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_x,		incrgaps,	{.i = -3 } },
 	/* { MODKEY|ShiftMask,		XK_x,		spawn,		SHCMD("") }, */
-	 { MODKEY,			XK_z,		spawn,		SHCMD("zclasses") },
 	/* { MODKEY|ShiftMask,		XK_c,		spawn,		SHCMD("") }, */
 	/* V is automatically bound above in STACKKEYS */
 	{ MODKEY,			XK_b,		togglebar,	{0} },
@@ -197,10 +197,10 @@ static Key keys[] = {
 	{ MODKEY,			XK_n,		spawn,		SHCMD("moosic") },
 	{ MODKEY,			XK_s,		spawn,		SHCMD("flameshot gui") },
 	{ MODKEY|ShiftMask,		XK_n,		spawn,		SHCMD(TERMINAL " -e newsboat; pkill -RTMIN+6 dwmblocks") },
-	{ MODKEY,			XK_m,		spawn,		SHCMD(TERMINAL " -e ncmpcpp") },
+	/* { MODKEY,			XK_m,		spawn,		SHCMD(TERMINAL " -e ncmpcpp") }, */
 	{ MODKEY|ShiftMask,		XK_m,		spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
-	{ MODKEY,		XK_o,		spawn,		SHCMD(TERMINAL " -g 120x34 -n notes -e notes")},
-	{ MODKEY,		XK_i,		spawn,		SHCMD(TERMINAL " -g 120x34 -n notes -e takeRealNote")},
+	/* { MODKEY,		XK_o,		spawn,		SHCMD(TERMINAL " -g 120x34 -n notes -e notes")},
+    { MODKEY,		XK_i,		spawn,		SHCMD(TERMINAL " -g 120x34 -n notes -e takeRealNote")}, */
 	{ MODKEY|ShiftMask,		XK_i,		spawn,		SHCMD(TERMINAL " -e viewRealNote")},
 	{ MODKEY|ShiftMask,		XK_o,		spawn,		SHCMD(TERMINAL " -e openLastNote")},
 	{ MODKEY,			XK_comma,	spawn,		SHCMD("mpc prev") },
