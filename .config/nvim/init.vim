@@ -1,4 +1,3 @@
-
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
     Plug 'vim-scripts/taglist.vim'
     Plug 'tpope/vim-surround'
@@ -9,31 +8,31 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'tpope/vim-commentary'
     Plug 'kovetskiy/sxhkd-vim'
     Plug 'junegunn/fzf.vim'
-    Plug 'dense-analysis/ale'
+    " Plug 'dense-analysis/ale'
     Plug 'reedes/vim-pencil'
 call plug#end()
 
- let mapleader = " "
- noremap <leader>z :TlistToggle<CR>
- " TeX preview engine
- let g:livepreview_previewer = 'zathura'
+let mapleader = " "
+noremap <leader>z :TlistToggle<CR>
+" TeX preview engine
+let g:livepreview_previewer = 'zathura'
 
- " vim pencil for md and tex
- let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
- augroup pencil
-   autocmd!
-   autocmd FileType markdown,mkd call pencil#init()
-   autocmd FileType tex         call pencil#init()
- augroup END
+" searches are case insensitive if all lower
+:set ignorecase
+:set smartcase
 
- " tab switching
- noremap <tab> :tabn<CR>
- :nnoremap <tab> :bnext<CR>
- " make gf add to buffer
- :map gf :e <cfile><CR>
- " jump to def in split window
- map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
- map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+"This unsets the "last search pattern" register by hitting return
+nnoremap <silent> <CR> :noh<CR><CR>
+
+" vim pencil for md and tex
+let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+let g:pencil#conceallevel = 0
+augroup pencil
+autocmd!
+autocmd FileType markdown,mkd call pencil#init()
+autocmd FileType tex         call pencil#init()
+augroup END
+
 
 
  filetype plugin indent on
@@ -58,7 +57,7 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 	syntax on
 	set encoding=utf-8
 	set number
-" fzf, baby
+" fzf
 map <leader>f :Files<CR>
 map <leader>x :Buffers<CR>
 
@@ -70,6 +69,7 @@ map <leader>x :Buffers<CR>
 
 "spellcheck
 	 map <leader>s :setlocal spell! spelllang=en_us<CR>
+
 "autonote thing, see scripts
 	autocmd BufWritePost *note-*.md silent !buildNote %:p
 " Splits open at the bottom and right, which is non-stupid, unlike vim defaults.
